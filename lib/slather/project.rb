@@ -176,6 +176,10 @@ module Slather
         hash[path_obj["filename"]] = path_obj["segments"]
         hash
       end
+      source_files = find_source_files
+      if source_files
+        pathnames &= source_files
+      end
       files = create_profdata(binary_path, pathnames)
       files.map do |source|
         coverage_file = coverage_file_class.new(self, source, line_numbers_first)
